@@ -1,0 +1,2 @@
+module AppearanceNotesHelper
+end

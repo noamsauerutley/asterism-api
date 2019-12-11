@@ -1,0 +1,2 @@
+class PlotNotesController < ApplicationController
+end

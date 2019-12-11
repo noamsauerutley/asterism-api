@@ -1,0 +1,2 @@
+class FragmentNotesController < ApplicationController
+end
