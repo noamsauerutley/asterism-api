@@ -23,6 +23,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # Use Active Model Serializers
 gem 'active_model_serializers'
+# Use Rest Client
+gem 'rest-client'
+# User Faker
+gem 'faker'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
