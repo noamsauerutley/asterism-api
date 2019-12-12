@@ -8,6 +8,8 @@ authors = JSON.parse(rawAuthors)
 rawQuotes = RestClient.get 'https://litipsum.com/api/50/json'
 quotes = JSON.parse(rawQuotes)
 
+rawPaintings = RestClient.get 'https://metmuseum.org/api/collection/collectionlisting?hasImages=true&q=portrait&offset=0&pageSize=0&sortBy=Relevance&sortOrder=asc&showOnly=openaccess'
+paintings = JSON.parse(rawPaintings)
 
 # Author
 # attributes: username, password, email, image_url, bio
@@ -30,12 +32,11 @@ Fragment.all.map do |fragment|
     end
 end
 
-story_title_words = [Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle,Faker::Verb.past_participle, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.shard, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Space.nasa_space_craft, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Cosmere.surge, Faker::Space.nasa_space_craft, Faker::Space.nasa_space_craft, Faker::Space.nasa_space_craft, Faker::Space.nasa_space_craft, Faker::Space.nasa_space_craft, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.constellation, Faker::Space.galaxy, Faker::Space.galaxy, Faker::Space.galaxy, Faker::Space.galaxy, Faker::Space.galaxy, Faker::Space.galaxy, Faker::Space.galaxy]
 
 # Story
 # attributes: author_id, title, summary
 50.times do
-    Story.create(author_id:rand(1..50), title: story_title_words.sample(rand(1..3)).join(" ").titleize, summary: Faker::TvShows::Simpsons.quote)
+    Story.create(author_id:rand(1..50), title: Faker::Book.title, summary: Faker::TvShows::Simpsons.quote)
 end
 
 plot_summary_options = ["Rags to Riches (rise)", "Riches to Rags (fall)", "Man in a Hole (fall then rise)", "Icarus (rise then fall)",  "Cinderella (rise then fall then rise)", "Oedipus (fall then rise then fall)"]
@@ -48,29 +49,67 @@ plot_summary_options = ["Rags to Riches (rise)", "Riches to Rags (fall)", "Man i
     Plot.create(story_id: rand(1..50), name: Faker::Quote.singular_siegler, summary: plot_summary_options.sample)
 end
 
+plot_note_options = ["needs work", "Awaiting S-Reader notes", "⭐️", "🤣", "😰", "💀", "🤠"]
+
 # Plot_note
 # attributes: plot_id, text
+50.times do
+    PlotNote.create(plot_id: rand(1..50), text: plot_note_options.sample)
+end
 
+scenes_options = [Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Games::Zelda.location, Faker::Games::Zelda.location, Faker::Games::Zelda.location, Faker::Team.state, Faker::Team.state, Faker::Team.state, Faker::Team.state, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::Team.state, Faker::Team.state, Faker::Verb.past, Faker::Verb.past, ]
 # Scene
 # attributes: plot_id, name, summary
+50.times do
+    Scene.create(plot_id: rand(1..50), name: scenes_options.sample(rand(1..2)).join(" "))
+end
 
 # Character
 # attributes: story_id, name, description
+names = [Faker::Ancient.hero, Faker::Ancient.hero, Faker::Ancient.hero, Faker::Ancient.hero, Faker::Ancient.primordial, Faker::Ancient.primordial, Faker::Ancient.primordial, Faker::Ancient.primordial, Faker::Ancient.primordial, Faker::Ancient.primordial, Faker::Ancient.titan, Faker::Ancient.titan, Faker::Ancient.titan, Faker::Ancient.titan, Faker::Name.middle_name,Faker::Name.middle_name,Faker::Name.middle_name]
+50.times do
+    Character.create(story_id: rand(1..50), name: "#{names.sample} #{Faker::Name.last_name}", description: Faker::Quote.famous_last_words)
+end
 
 # Character_note
 # attributes: character_id, text
+character_note_options = ["baby", "can be yuor devil or angle", "uwu", "i'm cry", "I would die for one (1) demon", "BAD", "EVIL", "PURE"]
+50.times do
+    CharacterNote.create(character_id: rand(1..50), text: character_note_options.sample)
+end
+
 
 # Gallery
 # attributes: character_id
+Character.all.each do |character|
+    Gallery.create(character_id: character.id)
+end
 
+image_notes_content = ["sort of, but not quite", "eyes", "chapter 4 inspo", "this mood", "just switch the hair and this vibe pretty much"]
 # Image:
 # attributes: gallery_id, image_url, note
+Gallery.all.each do |gallery|
+    rand(1..4).times do
+        Image.create(gallery_id: gallery.id, image_url: paintings['results'].sample['image'], note: image_notes_content.sample)
+    end
+end
+
+
 
 # Appearance
 # attributes: scene_id, character_id
+50.times do
+    Appearance.create(scene_id: rand(1..50), character_id: rand(1..50))
+end
 
+appearance_note_contents = ["FINALLY", "omg", "they made it 😭", "oh no baby what is you doin", "i honestly don't know how they're gonna get out of this one", "meet cute", "big conflict", "first contact", "last shared scene"]
 # Appearance_note
 # attributes: appearance_id, text
+Appearance.all.each do |appearance|
+    rand(1..5).times do
+        AppearanceNote.create(appearance_id: appearance.id, text: appearance_note_contents.sample )
+    end
+end
 
 
 puts "Seed Successful!"
