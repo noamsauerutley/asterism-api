@@ -1,7 +1,11 @@
 class StoriesController < ApplicationController
     def index
-        stories = Story.all
-        render json: stories
+        if client_has_valid_token?
+            stories = Story.all
+            render json: stories
+        else
+            render json: {go_away: true}, status: :unauthorized
+        end
     end
 
     def create

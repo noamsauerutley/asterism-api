@@ -21,12 +21,18 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# use JWT
+gem 'jwt'
+# Use .env key storage
+gem 'dotenv-rails'
 # Use Active Model Serializers
 gem 'active_model_serializers'
 # Use Rest Client
 gem 'rest-client'
-# User Faker
+# Use Faker
 gem 'faker'
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'	
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
