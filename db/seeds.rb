@@ -8,14 +8,16 @@ authors = JSON.parse(rawAuthors)
 rawQuotes = RestClient.get 'https://litipsum.com/api/50/json'
 quotes = JSON.parse(rawQuotes)
 
-rawPaintings = RestClient.get 'https://metmuseum.org/api/collection/collectionlisting?hasImages=true&q=portrait&offset=0&pageSize=0&sortBy=Relevance&sortOrder=asc&showOnly=openaccess'
-paintings = JSON.parse(rawPaintings)
+# rawPaintings = RestClient.get 'https://metmuseum.org/api/collection/collectionlisting?hasImages=true&q=portrait&offset=0&pageSize=0&sortBy=Relevance&&showOnly=openaccess'
+# paintings = JSON.parse(rawPaintings)
 
 # Author
 # attributes: username, password, email, image_url, bio
 authors['results'].map do |author|
     Author.create(username: author['login']['username'], password: author['login']['password'], email: author['email'], image_url: author['picture']['medium'], bio: "I like 2 write :)")
 end
+test_user = Author.create(username: "test", password: "test", email: "test@test.org", image_url: "https://www.andrew.cmu.edu/user/adowling/pokemon!/Images/pikachu.jpg", bio: "pika pika")
+
 
 # Fragment
 #attributes: author_id, title, text
@@ -90,7 +92,7 @@ image_notes_content = ["sort of, but not quite", "eyes", "chapter 4 inspo", "thi
 # attributes: gallery_id, image_url, note
 Gallery.all.each do |gallery|
     rand(1..4).times do
-        Image.create(gallery_id: gallery.id, image_url: paintings['results'].sample['image'], note: image_notes_content.sample)
+        Image.create(gallery_id: gallery.id, image_url: "https://www.andrew.cmu.edu/user/adowling/pokemon!/Images/pikachu.jpg", note: image_notes_content.sample)
     end
 end
 
