@@ -5,6 +5,11 @@ class FragmentsController < ApplicationController
         render json: fragments
     end
 
+    def show
+        fragment = Fragment.find(params[:id])
+        render json: fragment
+    end
+
     def create
         fragment = Fragment.create(fragment_params)
         if fragment.valid?

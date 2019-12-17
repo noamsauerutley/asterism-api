@@ -4,6 +4,11 @@ class ScenesController < ApplicationController
         render json: scenes
     end
 
+    def show
+        scene = Scene.find(params[:id])
+        render json: scene
+    end
+
     def create
         scene = Scene.create(scene_params)
         if scene.valid?

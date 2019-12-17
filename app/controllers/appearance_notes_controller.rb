@@ -4,6 +4,11 @@ class AppearanceNotesController < ApplicationController
         render json: appearance_notes
     end
 
+    def show
+        appearance_note = AppearanceNote.find(params[:id])
+        render json: appearance_note
+    end
+
     def create
         appearance_note = AppearanceNote.create(appearance_note_params)
         if appearance_note.valid?

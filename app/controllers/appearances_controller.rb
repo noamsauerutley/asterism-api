@@ -5,6 +5,11 @@ class AppearancesController < ApplicationController
         render json: appearances
     end
 
+    def show
+        appearance = Appearance.find(params[:id])
+        render json: appearance
+    end
+
     def create
         appearance = Appearance.create(appearance_params)
         if appearance.valid?

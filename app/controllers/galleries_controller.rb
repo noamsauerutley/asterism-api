@@ -5,6 +5,11 @@ class GalleriesController < ApplicationController
         render json: galleries
     end
 
+    def show
+        gallery = Gallery.find(params[:id])
+        render json: gallery
+    end
+
     def create
         gallery = Gallery.create(gallery_params)
         if gallery.valid?
@@ -26,6 +31,6 @@ class GalleriesController < ApplicationController
     private
 
     def gallery_params
-        params.require(:gallery).permit(:images)
+        params.require(:gallery).permit(:image)
     end
 end

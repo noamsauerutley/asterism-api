@@ -1,7 +1,13 @@
 class FragmentNotesController < ApplicationController
+
     def index
         fragment_notes = FragmentNote.all
         render json: fragment_notes
+    end
+
+    def show
+        fragment_note = FragmentNote.find(params[:id])
+        render json: fragment_note
     end
 
     def create

@@ -4,6 +4,11 @@ class PlotsController < ApplicationController
         render json: plots
     end
 
+    def show
+        plot = Plot.find(params[:id])
+        render json: plot
+    end
+
     def create
         plot = Plot.create(plot_params)
         if plot.valid?

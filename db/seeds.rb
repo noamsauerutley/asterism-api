@@ -37,27 +37,32 @@ end
 
 # Story
 # attributes: author_id, title, summary
-50.times do
-    Story.create(author_id:rand(1..50), title: Faker::Book.title, summary: Faker::TvShows::Simpsons.quote)
+100.times do
+    Story.create(author_id:rand(1..Author.all.length), title: Faker::Book.title, summary: Faker::TvShows::Simpsons.quote)
 end
-
-plot_summary_options = ["Rags to Riches (rise)", "Riches to Rags (fall)", "Man in a Hole (fall then rise)", "Icarus (rise then fall)",  "Cinderella (rise then fall then rise)", "Oedipus (fall then rise then fall)"]
+Story.create(author_id:51, title: "Of Hearts and Beans", summary: "Meet me at the crossroads")
 
 
 # Plot
 # attributes: story_id, name, summary
+plot_summary_options = ["Rags to Riches (rise)", "Riches to Rags (fall)", "Man in a Hole (fall then rise)", "Icarus (rise then fall)",  "Cinderella (rise then fall then rise)", "Oedipus (fall then rise then fall)"]
 50.times do
     # Plot.create(story_id: rand(1..50), name: Faker::Quote.singular_siegler, summary: plot_summary_options.sample)
     Plot.create(story_id: rand(1..50), name: Faker::Quote.singular_siegler, summary: plot_summary_options.sample)
 end
-
-plot_note_options = ["needs work", "Awaiting S-Reader notes", "⭐️", "🤣", "😰", "💀", "🤠"]
+Plot.create(story_id:101, name: "On the Run", summary: "Rags to Riches (rise)")
+Plot.create(story_id:101, name: "Tension crescendo", summary: "Man in a Hole (fall then rise)")
 
 # Plot_note
 # attributes: plot_id, text
+plot_note_options = ["needs work", "Awaiting S-Reader notes", "⭐️", "🤣", "😰", "💀", "🤠"]
 50.times do
     PlotNote.create(plot_id: rand(1..50), text: plot_note_options.sample)
 end
+PlotNote.create(plot_id: 51, text: "grief arc")
+PlotNote.create(plot_id: 51, text: "slow loom")
+PlotNote.create(plot_id: 52, text: "repeat the road motif")
+
 
 scenes_options = [Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Games::Zelda.location, Faker::Games::Zelda.location, Faker::Games::Zelda.location, Faker::Team.state, Faker::Team.state, Faker::Team.state, Faker::Team.state, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::TvShows::TwinPeaks.location, Faker::Team.state, Faker::Team.state, Faker::Verb.past, Faker::Verb.past, ]
 # Scene
@@ -65,6 +70,12 @@ scenes_options = [Faker::Music::Phish.song, Faker::Music::Phish.song, Faker::Mus
 50.times do
     Scene.create(plot_id: rand(1..50), name: scenes_options.sample(rand(1..2)).join(" "))
 end
+Scene.create(plot_id:51, name: "YeeHaw, babey", summary: "YEEEEEHAWWWWW")
+Scene.create(plot_id:51, name: "Longing Alert", summary: "Oof :(")
+Scene.create(plot_id:51, name: "The Scary Bit", summary: "idk about this bit honestly.")
+Scene.create(plot_id:52, name: "Morning Light", summary: "remember to include the big about the window")
+Scene.create(plot_id:52, name: "Morning Light Redux", summary: "bowl of oranges...")
+Scene.create(plot_id:52, name: "Attic", summary: "goth pastiche bit with the wall")
 
 # Character
 # attributes: story_id, name, description
@@ -72,6 +83,8 @@ names = [Faker::Ancient.hero, Faker::Ancient.hero, Faker::Ancient.hero, Faker::A
 50.times do
     Character.create(story_id: rand(1..50), name: "#{names.sample} #{Faker::Name.last_name}", description: Faker::Quote.famous_last_words)
 end
+Character.create(story_id: 101, name: "Jez Jones", description: "Just stares at you like a weird parrot")
+Character.create(story_id: 101, name: "Elaine Ogelvy", description: "Fluffy hair, everyone would die for her")
 
 # Character_note
 # attributes: character_id, text
@@ -79,6 +92,10 @@ character_note_options = ["baby", "can be yuor devil or angle", "uwu", "i'm cry"
 50.times do
     CharacterNote.create(character_id: rand(1..50), text: character_note_options.sample)
 end
+CharacterNote.create(character_id:51, text: "grim little thing")
+CharacterNote.create(character_id:52, text: "Literal angel")
+CharacterNote.create(character_id:52, text: "deep voice!")
+CharacterNote.create(character_id:52, text: "Figure out the glasses?")
 
 
 # Gallery
@@ -96,17 +113,18 @@ Gallery.all.each do |gallery|
     end
 end
 
-
-
 # Appearance
 # attributes: scene_id, character_id
 50.times do
     Appearance.create(scene_id: rand(1..50), character_id: rand(1..50))
 end
-
-appearance_note_contents = ["FINALLY", "omg", "they made it 😭", "oh no baby what is you doin", "i honestly don't know how they're gonna get out of this one", "meet cute", "big conflict", "first contact", "last shared scene"]
+Appearance.create(scene_id: 51, character_id:51)
+Appearance.create(scene_id:51, character_id:52)
+Appearance.create(scene_id:52, character_id:51)
+Appearance.create(scene_id:52, character_id:52)
 # Appearance_note
 # attributes: appearance_id, text
+appearance_note_contents = ["FINALLY", "omg", "they made it 😭", "oh no baby what is you doin", "i honestly don't know how they're gonna get out of this one", "meet cute", "big conflict", "first contact", "last shared scene"]
 Appearance.all.each do |appearance|
     rand(1..5).times do
         AppearanceNote.create(appearance_id: appearance.id, text: appearance_note_contents.sample )

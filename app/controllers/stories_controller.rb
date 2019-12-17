@@ -8,6 +8,11 @@ class StoriesController < ApplicationController
         end
     end
 
+    def show
+        story = Story.find(params[:id])
+        render json: story
+    end
+
     def create
         story = Story.create(story_params)
         if story.valid?

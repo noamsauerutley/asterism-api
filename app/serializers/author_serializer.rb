@@ -5,7 +5,10 @@ class AuthorSerializer < ActiveModel::Serializer
     self.object.stories.map do |story|
       {id: story.id,
       title: story.title,
-      summary: story.summary}
+      summary: story.summary,
+      plots: story.plots,
+      characters: story.characters
+    }
     end
   end
 

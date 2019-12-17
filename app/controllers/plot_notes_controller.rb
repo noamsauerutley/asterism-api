@@ -4,6 +4,11 @@ class PlotNotesController < ApplicationController
         render json: plot_notes
     end
 
+    def show
+        plot_note = PlotNote.find(params[:id])
+        render json: plot_note
+    end
+
     def create
         plot_note = PlotNote.create(plot_note_params)
         if plot_note.valid?

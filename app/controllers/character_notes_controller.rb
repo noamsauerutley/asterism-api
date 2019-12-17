@@ -4,6 +4,11 @@ class CharacterNotesController < ApplicationController
         render json: character_notes
     end
 
+    def show
+        character_note = CharacterNote.find(params[:id])
+        render json: character_note
+    end
+
     def create
         character_note = CharacterNote.create(character_note_params)
         if character_note.valid?
