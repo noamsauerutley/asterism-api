@@ -3,14 +3,14 @@ class AuthorsController < ApplicationController
    
     def index
         authors = Author.all
-        render json: authors, include: '**'
+        render json: authors
     end
 
     def show
         author_id = params[:id]
         if current_user_id == author_id.to_i
         author = Author.find(author_id)
-        render json: author, include: '**'
+        render json: author
         else render json: { go_away: true }, status: :unauthorized
         end
     end

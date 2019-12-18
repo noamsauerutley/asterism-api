@@ -18,7 +18,9 @@ class AuthorSerializer < ActiveModel::Serializer
         description: character.description,
         character_notes: character.character_notes,
         gallery: character.gallery,
-        appearances: character.appearances}
+        appearances: character.appearances,
+        scenes: character.scenes,
+        images: character.images}
       end
     }
     end

@@ -1,5 +1,5 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :story_id, :name, :description, :character_notes, :gallery, :appearances
+  attributes :id, :story_id, :name, :description, :character_notes, :gallery, :appearances, :scenes, :images
 
   def character_notes
     self.object.character_notes.map do |character_note|
@@ -26,6 +26,22 @@ class CharacterSerializer < ActiveModel::Serializer
         scene_id: appearance.scene_id,
         character_id: appearance.character_id,
         appearance_notes: appearance.appearance_notes
+      }
+    end
+  end
+
+  def scenes
+    self.object.scenes.map do |scene|
+      {
+        name: scene.name
+      }
+    end
+  end
+
+  def images
+    self.object.images.map do |image|
+      {
+        image_url: image.image_url
       }
     end
   end
