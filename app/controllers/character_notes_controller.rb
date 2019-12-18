@@ -1,4 +1,6 @@
 class CharacterNotesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         character_notes = CharacterNote.all
         render json: character_notes

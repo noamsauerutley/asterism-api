@@ -1,13 +1,14 @@
 class CharactersController < ApplicationController
-  
+    skip_before_action :verify_authenticity_token
+
     def index
         characters = Character.all
-        render json: characters
+        render json: characters, include: '**'
     end
 
     def show
         character = Character.find(params[:id])
-        render json: character
+        render json: character, include: '**'
     end
 
     def create
@@ -31,6 +32,6 @@ class CharactersController < ApplicationController
     private
 
     def character_params
-        params.require(:character).permit( :story_id, :name, :description)
+        params.require(:character).permit( :story_id, :name, :description, :character_notes, :gallery, :appearances)
     end
 end

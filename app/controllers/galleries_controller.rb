@@ -1,4 +1,6 @@
 class GalleriesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
             
     def index
         galleries = Gallery.all
@@ -31,6 +33,6 @@ class GalleriesController < ApplicationController
     private
 
     def gallery_params
-        params.require(:gallery).permit(:image)
+        params.require(:gallery).permit(:character_id, :image)
     end
 end

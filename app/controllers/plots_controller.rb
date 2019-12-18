@@ -1,4 +1,6 @@
-class PlotsController < ApplicationController
+class PlotsController < ApplicationController    
+    skip_before_action :verify_authenticity_token
+
     def index
         plots = Plot.all
         render json: plots

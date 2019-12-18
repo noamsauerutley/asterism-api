@@ -1,4 +1,6 @@
 class PlotNotesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         plot_notes = PlotNote.all
         render json: plot_notes

@@ -1,4 +1,5 @@
 class FragmentNotesController < ApplicationController
+    skip_before_action :verify_authenticity_token
 
     def index
         fragment_notes = FragmentNote.all

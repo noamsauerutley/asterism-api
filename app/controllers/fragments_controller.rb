@@ -1,4 +1,5 @@
 class FragmentsController < ApplicationController
+    skip_before_action :verify_authenticity_token
 
     def index
         fragments = Fragment.all

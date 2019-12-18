@@ -1,4 +1,6 @@
 class ScenesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         scenes = Scene.all
         render json: scenes

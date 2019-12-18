@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
     def index
         if client_has_valid_token?
             stories = Story.all
-            render json: stories
+            render json: stories, include: '**'
         else
             render json: {go_away: true}, status: :unauthorized
         end
@@ -12,7 +12,7 @@ class StoriesController < ApplicationController
 
     def show
         story = Story.find(params[:id])
-        render json: story
+        render json: story, include: '**'
     end
 
     def create

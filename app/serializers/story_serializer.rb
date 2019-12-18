@@ -17,9 +17,12 @@ class StorySerializer < ActiveModel::Serializer
     self.object.characters.map do |character|
       {
         id: character.id,
+        story_id: character.story_id,
         name: character.name,
         description: character.description,
-        gallery: character.gallery
+        character_notes: character.character_notes, 
+        gallery: character.gallery, 
+        appearances: character.appearances
       }
     end
   end

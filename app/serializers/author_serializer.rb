@@ -6,8 +6,20 @@ class AuthorSerializer < ActiveModel::Serializer
       {id: story.id,
       title: story.title,
       summary: story.summary,
-      plots: story.plots,
-      characters: story.characters
+      plots: story.plots.map do |plot|
+        {
+          plot_notes: plot.plot_notes,
+          scenes: plot.scenes
+        }
+      end,
+      characters: story.characters.map do |character|
+        {id: character.id,
+        name: character.name,
+        description: character.description,
+        character_notes: character.character_notes,
+        gallery: character.gallery,
+        appearances: character.appearances}
+      end
     }
     end
   end
