@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def index
         if client_has_valid_token?
             stories = Story.all
@@ -14,12 +16,11 @@ class StoriesController < ApplicationController
     end
 
     def create
-        story = Story.create(story_params)
-        if story.valid?
-        render json: { token: token(story.id), story_id: story.id }
-        
+        if client_has_valid_token?
+            story = Story.create(story_params)
+            render json: story
         else
-        render json: { errors: story.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: story.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 
@@ -28,9 +29,14 @@ class StoriesController < ApplicationController
         if story.update(story_params)
             render json: story.to_json
         else
-        render json: story.errors, status: :unprocessable_entity
+            render json: story.errors, status: :unprocessable_entity
         end 
-        end
+    end
+
+    def destroy
+        Story.destroy(params[:id])
+    end
+
     private
 
     def story_params
