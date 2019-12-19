@@ -12,12 +12,11 @@ class FragmentsController < ApplicationController
     end
 
     def create
-        fragment = Fragment.create(fragment_params)
-        if fragment.valid?
-        render json: { token: token(fragment.id), fragment_id: fragment.id }
-        
+        if client_has_valid_token?
+            fragment = Fragment.create(fragment_params)
+            render json: fragment
         else
-        render json: { errors: fragment.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: fragment.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 
@@ -29,6 +28,11 @@ class FragmentsController < ApplicationController
             render json: fragment.errors, status: :unprocessable_entity
         end 
     end
+
+    def destroy
+        Fragment.destroy(params[:id])
+    end
+    
     private
 
     def fragment_params
