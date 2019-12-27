@@ -28,11 +28,11 @@ class PlotsController < ApplicationController
         else
         render json: plot.errors, status: :unprocessable_entity
         end 
-        end
+    end
 
-        def destroy
-            Plot.destroy(params[:id])
-        end
+    def destroy
+        Plot.destroy(params[:id])
+    end
     private
 
     def plot_params

@@ -5,6 +5,7 @@ class StorySerializer < ActiveModel::Serializer
     self.object.plots.map do |plot|
       {
         id: plot.id,
+        story_id: plot.story_id,
         name: plot.name,
         summary: plot.summary,
         notes: plot.plot_notes,

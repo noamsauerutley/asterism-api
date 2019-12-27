@@ -8,6 +8,8 @@ class AuthorSerializer < ActiveModel::Serializer
       summary: story.summary,
       plots: story.plots.map do |plot|
         {
+          id: plot.id,
+          story_id: plot.story_id,
           name: plot.name,
           summary: plot.summary,
           plot_notes: plot.plot_notes,
