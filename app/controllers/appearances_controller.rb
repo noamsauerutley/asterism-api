@@ -30,6 +30,10 @@ class AppearancesController < ApplicationController
         render json: appearance.errors, status: :unprocessable_entity
         end 
         end
+
+        def destroy
+            Appearance.destroy(params[:id])
+        end
     private
 
     def appearance_params

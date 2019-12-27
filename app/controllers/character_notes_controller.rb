@@ -29,6 +29,10 @@ class CharacterNotesController < ApplicationController
         render json: character_note.errors, status: :unprocessable_entity
         end 
         end
+
+        def destroy
+            CharacterNote.destroy(params[:id])
+        end
     private
 
     def character_note_params

@@ -29,6 +29,10 @@ class ImagesController < ApplicationController
         render json: image.errors, status: :unprocessable_entity
         end 
         end
+
+        def destroy
+            Image.destroy(params[:id])
+        end
     private
 
     def image_params

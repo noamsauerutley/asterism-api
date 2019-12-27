@@ -29,6 +29,10 @@ class AppearanceNotesController < ApplicationController
         render json: appearance_note.errors, status: :unprocessable_entity
         end 
         end
+
+        def destroy
+            AppearanceNote.destroy(params[:id])
+        end
     private
 
     def appearance_note_params

@@ -29,6 +29,10 @@ class CharactersController < ApplicationController
         render json: character.errors, status: :unprocessable_entity
         end 
         end
+
+        def destroy
+            Character.destroy(params[:id])
+        end
     private
 
     def character_params

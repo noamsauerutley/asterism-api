@@ -29,6 +29,10 @@ class FragmentNotesController < ApplicationController
             render json: fragment_note.errors, status: :unprocessable_entity
         end 
     end
+
+    def destroy
+        Fragment.destroy(params[:id])
+    end
     private
 
     def fragment_note_params

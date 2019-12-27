@@ -29,6 +29,10 @@ class ScenesController < ApplicationController
         render json: scene.errors, status: :unprocessable_entity
         end 
         end
+
+        def destroy
+            Scene.destroy(params[:id])
+        end
     private
 
     def scene_params

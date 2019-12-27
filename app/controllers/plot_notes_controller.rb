@@ -29,6 +29,10 @@ class PlotNotesController < ApplicationController
             render json: plot_note.errors, status: :unprocessable_entity
         end 
     end
+
+    def destroy
+        PlotNote.destroy(params[:id])
+    end
     private
 
     def plot_note_params

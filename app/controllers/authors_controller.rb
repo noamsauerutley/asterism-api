@@ -32,6 +32,10 @@ class AuthorsController < ApplicationController
             render json: author.errors, status: :unprocessable_entity
         end 
     end
+
+    def destroy
+        Author.destroy(params[:id])
+    end
     
     private
 
