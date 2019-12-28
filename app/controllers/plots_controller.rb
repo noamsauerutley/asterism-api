@@ -12,12 +12,11 @@ class PlotsController < ApplicationController
     end
 
     def create
-        plot = Plot.create(plot_params)
-        if plot.valid?
-        render json: { token: token(plot.id), plot_id: plot.id }
-        
+        if client_has_valid_token?
+            plot = Plot.create(plot_params)
+            render json: plot
         else
-        render json: { errors: plot.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: story.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 
