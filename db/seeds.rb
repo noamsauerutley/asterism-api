@@ -98,18 +98,12 @@ CharacterNote.create(character_id:52, text: "deep voice!")
 CharacterNote.create(character_id:52, text: "Figure out the glasses?")
 
 
-# Gallery
-# attributes: character_id
-Character.all.each do |character|
-    Gallery.create(character_id: character.id)
-end
-
 image_notes_content = ["sort of, but not quite", "eyes", "chapter 4 inspo", "this mood", "just switch the hair and this vibe pretty much"]
 # Image:
-# attributes: gallery_id, image_url, note
-Gallery.all.each do |gallery|
+# attributes: character_id, image_url, note
+Character.all.each do |character|
     rand(1..4).times do
-        Image.create(gallery_id: gallery.id, image_url: "https://www.andrew.cmu.edu/user/adowling/pokemon!/Images/pikachu.jpg", note: image_notes_content.sample)
+        Image.create(character_id: character.id, image_url: "https://www.andrew.cmu.edu/user/adowling/pokemon!/Images/pikachu.jpg", note: image_notes_content.sample)
     end
 end
 

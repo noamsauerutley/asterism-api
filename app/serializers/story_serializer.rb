@@ -22,7 +22,7 @@ class StorySerializer < ActiveModel::Serializer
         name: character.name,
         description: character.description,
         character_notes: character.character_notes, 
-        gallery: character.gallery, 
+        images: character.images, 
         appearances: character.appearances
       }
     end

@@ -76,20 +76,13 @@ ActiveRecord::Schema.define(version: 2019_12_11_164308) do
     t.index ["author_id"], name: "index_fragments_on_author_id"
   end
 
-  create_table "galleries", force: :cascade do |t|
-    t.bigint "character_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["character_id"], name: "index_galleries_on_character_id"
-  end
-
   create_table "images", force: :cascade do |t|
-    t.bigint "gallery_id", null: false
+    t.bigint "character_id", null: false
     t.text "image_url"
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["gallery_id"], name: "index_images_on_gallery_id"
+    t.index ["character_id"], name: "index_images_on_character_id"
   end
 
   create_table "plot_notes", force: :cascade do |t|
@@ -134,8 +127,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_164308) do
   add_foreign_key "characters", "stories"
   add_foreign_key "fragment_notes", "fragments"
   add_foreign_key "fragments", "authors"
-  add_foreign_key "galleries", "characters"
-  add_foreign_key "images", "galleries"
+  add_foreign_key "images", "characters"
   add_foreign_key "plot_notes", "plots"
   add_foreign_key "plots", "stories"
   add_foreign_key "scenes", "plots"
