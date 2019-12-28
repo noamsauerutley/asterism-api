@@ -13,11 +13,10 @@ class CharacterNotesController < ApplicationController
 
     def create
         character_note = CharacterNote.create(character_note_params)
-        if character_note.valid?
-        render json: { token: token(character_note.id), character_note_id: character_note.id }
-        
+        if client_has_valid_token?
+            render json: character_note
         else
-        render json: { errors: character_note.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: character_note.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 

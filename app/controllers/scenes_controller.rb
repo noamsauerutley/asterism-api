@@ -13,9 +13,8 @@ class ScenesController < ApplicationController
 
     def create
         scene = Scene.create(scene_params)
-        if scene.valid?
-        render json: { token: token(scene.id), scene_id: scene.id }
-        
+        if client_has_valid_token?
+        render json: scene
         else
         render json: { errors: scene.errors.full_messages }, status: :unprocessable_entity
         end 

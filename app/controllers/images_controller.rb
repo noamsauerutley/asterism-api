@@ -13,9 +13,8 @@ class ImagesController < ApplicationController
 
     def create
         image = Image.create(image_params)
-        if image.valid?
-        render json: { token: token(image.id), image_id: image.id }
-        
+        if client_has_valid_token?
+        render json: image
         else
         render json: { errors: image.errors.full_messages }, status: :unprocessable_entity
         end 

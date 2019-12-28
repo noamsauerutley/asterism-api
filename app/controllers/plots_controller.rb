@@ -23,7 +23,7 @@ class PlotsController < ApplicationController
     def update
         plot = Plot.find(params[:id])
         if plot.update(plot_params)
-            render json: plot.to_json
+            render json: plot
         else
         render json: plot.errors, status: :unprocessable_entity
         end 

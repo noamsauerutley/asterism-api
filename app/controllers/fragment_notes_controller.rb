@@ -13,11 +13,10 @@ class FragmentNotesController < ApplicationController
 
     def create
         fragment_note = FragmentNote.create(fragment_note_params)
-        if fragment_note.valid?
-        render json: { token: token(fragment_note.id), fragment_note_id: fragment_note.id }
-        
+        if client_has_valid_token?
+            render json: fragment_note
         else
-        render json: { errors: fragment_note.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: fragment_note.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 

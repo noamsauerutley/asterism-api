@@ -14,9 +14,8 @@ class GalleriesController < ApplicationController
 
     def create
         gallery = Gallery.create(gallery_params)
-        if gallery.valid?
-        render json: { token: token(gallery.id), gallery_id: gallery.id }
-        
+        if client_has_valid_token?
+        render json: gallery
         else
         render json: { errors: gallery.errors.full_messages }, status: :unprocessable_entity
         end 

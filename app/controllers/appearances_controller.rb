@@ -13,12 +13,11 @@ class AppearancesController < ApplicationController
     end
 
     def create
-        appearance = Appearance.create(appearance_params)
-        if appearance.valid?
-        render json: { token: token(appearance.id), appearance_id: appearance.id }
-        
+        if client_has_valid_token?
+            appearance = Appearance.create(appearance_params)
+            render json: appearance
         else
-        render json: { errors: appearance.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: appearance.errors.full_messages }, status: :unprocessable_entity
         end 
     end
 

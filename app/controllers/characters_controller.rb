@@ -13,9 +13,8 @@ class CharactersController < ApplicationController
 
     def create
         character = Character.create(character_params)
-        if character.valid?
-        render json: { token: token(character.id), character_id: character.id }
-        
+        if client_has_valid_token?
+        render json: character
         else
         render json: { errors: character.errors.full_messages }, status: :unprocessable_entity
         end 

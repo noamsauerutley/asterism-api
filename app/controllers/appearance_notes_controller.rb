@@ -12,14 +12,14 @@ class AppearanceNotesController < ApplicationController
     end
 
     def create
-        appearance_note = AppearanceNote.create(appearance_note_params)
-        if appearance_note.valid?
-        render json: { token: token(appearance_note.id), appearance_note_id: appearance_note.id }
-        
+        if client_has_valid_token?
+            appearance_note = AppearanceNote.create(appearance_note_params)
+            render json: appearance_note
         else
-        render json: { errors: appearance_note.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: appearance_note.errors.full_messages }, status: :unprocessable_entity
         end 
     end
+
 
     def update
         appearance_note = AppearanceNote.find(params[:id])

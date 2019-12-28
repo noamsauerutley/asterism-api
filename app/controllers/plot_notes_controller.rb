@@ -13,9 +13,8 @@ class PlotNotesController < ApplicationController
 
     def create
         plot_note = PlotNote.create(plot_note_params)
-        if plot_note.valid?
-        render json: { token: token(plot_note.id), plot_note_id: plot_note.id }
-        
+        if client_has_valid_token?
+        render json: plot_note
         else
         render json: { errors: plot_note.errors.full_messages }, status: :unprocessable_entity
         end 
