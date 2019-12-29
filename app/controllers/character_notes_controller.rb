@@ -35,6 +35,6 @@ class CharacterNotesController < ApplicationController
     private
 
     def character_note_params
-        params.require(:character_note).permit(:character_id, :description)
+        params.require(:character_note).permit(:character_id, :text)
     end
 end
