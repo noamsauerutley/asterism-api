@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
     end
 
     def update
-        image = image.find(params[:id])
+        image = Image.find(params[:id])
         if image.update(image_params)
             render json: image.to_json
         else
