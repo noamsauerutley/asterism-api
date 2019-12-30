@@ -34,7 +34,7 @@ class AuthorSerializer < ActiveModel::Serializer
       {id: fragment.id,
       title: fragment.title,
       text: fragment.text,
-      notes: fragment.fragment_notes}
+      fragment_notes: fragment.fragment_notes}
     end
   end
 

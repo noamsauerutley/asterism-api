@@ -30,7 +30,7 @@ class FragmentNotesController < ApplicationController
     end
 
     def destroy
-        Fragment.destroy(params[:id])
+        FragmentNote.destroy(params[:id])
     end
     private
 
