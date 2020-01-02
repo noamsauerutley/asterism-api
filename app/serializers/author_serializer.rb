@@ -13,7 +13,15 @@ class AuthorSerializer < ActiveModel::Serializer
           name: plot.name,
           summary: plot.summary,
           plot_notes: plot.plot_notes,
-          scenes: plot.scenes
+          scenes: plot.scenes.map do |scene|
+              {
+                id: scene.id,
+                plot_id: scene.plot_id,
+                name: scene.name,
+                summary: scene.summary,
+                characters: scene.characters
+              }
+          end
         }
       end,
       characters: story.characters.map do |character|

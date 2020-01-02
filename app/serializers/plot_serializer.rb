@@ -7,7 +7,7 @@ class PlotSerializer < ActiveModel::Serializer
         id: scene.id,
         name: scene.name,
         summary: scene.summary,
-        appearances: scene.appearances,
+        characters: scene.characters,
       }
     end
   end
