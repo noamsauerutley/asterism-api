@@ -1,24 +1,13 @@
-# README
+Asterism
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Asterism is a  project management word-processing program and outliner designed for writers. Asterism provides a management system for documents, notes and metadata. This allows the user to organize notes, concepts, research and deeply nested  documents for easy access and reference.
 
-Things you may want to cover:
+Built With:
+Ruby on Rails
+PostgreSQL
+JWT + BCrypt
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Authors:
+Noam Sauer-Utley
+https://medium.com/@noamsauerutley
+https://www.linkedin.com/in/noamsauerutley/
