@@ -6,9 +6,7 @@
 </blockquote>
 
 <hr></hr>
-<blockquote>
   <h3><a href="https://asterism-for-writers.herokuapp.com/" >Try it out on Heroku!</a></h3>
-</blockquote>
 <hr></hr>
 
 
