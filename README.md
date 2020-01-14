@@ -28,8 +28,6 @@
     <img src="https://i.imgur.com/ogr1jWn.png" alt="Asterism story detail page: plots"/>     
     <img src="https://i.imgur.com/P1zpCR4.png" alt="Asterism error page"/>
 </div>
-<hr>
-</hr>
 
 <hr>
 </hr>
