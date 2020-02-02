@@ -5,7 +5,7 @@
 
 <hr></hr>
 <p>
-  See the Front-End <a href="https://github.com/noamsauerutley/asterism-frontend/">here</a>
+  See the Front-End <a href="https://github.com/noamsauerutley/asterism-frontend/">here</a>.
 </p>
 <hr></hr>
 
