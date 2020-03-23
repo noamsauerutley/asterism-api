@@ -2,12 +2,8 @@ class StoriesController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        if client_has_valid_token?
-            stories = Story.all
-            render json: stories
-        else
-            render json: {go_away: true}, status: :unauthorized
-        end
+        stories = Story.all
+        render json: stories
     end
 
     def show
@@ -40,6 +36,6 @@ class StoriesController < ApplicationController
     private
 
     def story_params
-        params.require(:story).permit(:author_id, :title, :summary, :plots, :characters)
+        params.require(:story).permit(:author_id, :title, :summary, :plots, :characters, :story_notes)
     end
 end
