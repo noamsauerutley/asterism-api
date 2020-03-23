@@ -1,5 +1,5 @@
 class StorySerializer < ActiveModel::Serializer
-  attributes :id, :author_id, :title, :summary, :plots, :characters
+  attributes :id, :author_id, :title, :summary, :plots, :notes, :characters
 
   def plots
     self.object.plots.map do |plot|
