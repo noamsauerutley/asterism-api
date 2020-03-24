@@ -27,4 +27,11 @@ class StorySerializer < ActiveModel::Serializer
       }
     end
   end
+
+  def story_notes
+    self.object.story_notes.map do |story_note|
+      {id: story_note.id,
+      text: story_note.text}
+    end
+  end
 end
