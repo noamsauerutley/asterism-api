@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_164308) do
+ActiveRecord::Schema.define(version: 2020_03_24_000807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,14 @@ ActiveRecord::Schema.define(version: 2019_12_11_164308) do
     t.index ["author_id"], name: "index_stories_on_author_id"
   end
 
+  create_table "story_notes", force: :cascade do |t|
+    t.bigint "story_id", null: false
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_story_notes_on_story_id"
+  end
+
   add_foreign_key "appearance_notes", "appearances"
   add_foreign_key "appearances", "characters"
   add_foreign_key "appearances", "scenes"
@@ -132,4 +140,5 @@ ActiveRecord::Schema.define(version: 2019_12_11_164308) do
   add_foreign_key "plots", "stories"
   add_foreign_key "scenes", "plots"
   add_foreign_key "stories", "authors"
+  add_foreign_key "story_notes", "stories"
 end
