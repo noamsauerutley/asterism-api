@@ -25,13 +25,21 @@ class AuthorSerializer < ActiveModel::Serializer
         }
       end,
       characters: story.characters.map do |character|
-        {id: character.id,
-        name: character.name,
-        description: character.description,
-        character_notes: character.character_notes,
-        appearances: character.appearances,
-        scenes: character.scenes,
-        images: character.images}
+        {
+          id: character.id,
+          name: character.name,
+          description: character.description,
+          character_notes: character.character_notes,
+          appearances: character.appearances,
+          scenes: character.scenes,
+          images: character.images
+      }
+      end,
+      plot_notes: story.story_notes.map do |story_note|
+        {
+          id: story_note.id,
+          text: story_note.text
+        }
       end
     }
     end
