@@ -5,7 +5,7 @@
 
 <hr></hr>
 <p>
-  See the Front-End <a href="https://github.com/noamsauerutley/asterism-frontend/">here</a>.
+  See the front-end repo <a href="https://github.com/noamsauerutley/asterism-frontend/">here</a>.
 </p>
 <hr></hr>
 
@@ -20,6 +20,8 @@
   <h3><a href="https://asterism-for-writers.herokuapp.com/" >Check it out on Heroku!</a></h3>
   <p> <b>Username:</b> <i>demo</i> <br>
   <b>Password:</b> <i>samplepasswordforasterism</i>
+  <br><br/> 
+  <strong>N.B. I recently reset the pg database for this app as I needed to integrate some additional features. A rebuilt demo account for your perusal will be back online soon! :)</strong>
   </p>
   <hr></hr>
   <div>
