@@ -35,7 +35,7 @@ class AuthorSerializer < ActiveModel::Serializer
           images: character.images
       }
       end,
-      plot_notes: story.story_notes.map do |story_note|
+      story_notes: story.story_notes.map do |story_note|
         {
           id: story_note.id,
           text: story_note.text
